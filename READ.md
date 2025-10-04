@@ -17,8 +17,9 @@ API Gateway exposes an HTTP endpoint. When you call it, a Lambda function runs a
 - Lambda Code: ![Lambda](docs/screenshots/03-lambda-code.png)
 - Lambda Test: ![Lambda](docs/screenshots/04-lambda-test-success.png)
 - API Gateway: ![Routes](docs/screenshots/05-api-gateway-config.png)
-- API Gateway Routes: ![Stage](docs/screenshots/06-api-gateway-routes.png)
-- Logs success: ![Logs](docs/screenshots/05-cloudwatch-logs-success.png)
+- API Gateway Routes: ![Routes](docs/screenshots/06-api-gateway-routes.png)
+- API Stage : ![Stage](docs/screenshots/07-api-stage-url.png)
+- API Test:![Logs](docs/screenshots/08-api-test-success.png)
 
 ## What I learned
 - Wiring API Gateway to Lambda
