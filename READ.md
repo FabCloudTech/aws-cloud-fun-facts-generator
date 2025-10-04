@@ -13,11 +13,11 @@ API Gateway exposes an HTTP endpoint. When you call it, a Lambda function runs a
 ![Architecture](docs/screenshots/01-architecture.png)
 
 ## Proof (console screenshots)
-- Lambda config: ![Lambda](docs/screenshots/02-lambda-config.png)
-- Lambda code: ![Lambda](docs/screenshots/03-lambda-code.png)
+- Lambda Config: ![Lambda](docs/screenshots/02-lambda-config.png)
+- Lambda Code: ![Lambda](docs/screenshots/03-lambda-code.png)
 - Lambda Test: ![Lambda](docs/screenshots/04-lambda-test-success.png)
-- API gateway: ![Routes](docs/screenshots/05-api-gateway-config.png)
-- API stage URL: ![Stage](docs/screenshots/04-api-gateway-stage-url.png)
+- API Gateway: ![Routes](docs/screenshots/05-api-gateway-config.png)
+- API Gateway Routes: ![Stage](docs/screenshots/06-api-gateway-routes.png)
 - Logs success: ![Logs](docs/screenshots/05-cloudwatch-logs-success.png)
 
 ## What I learned
