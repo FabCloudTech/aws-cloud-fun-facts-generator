@@ -9,7 +9,7 @@ API Gateway exposes an HTTP endpoint. When you call it, a Lambda function runs a
 1) Deploy the Lambda + API (follow steps in this repo).
 2) Test with curl or your browser using the API Gateway URL.
 
-## 🏗️ Architecture (picture)
+## 🏗️ Architecture 
 ![Architecture](docs/screenshots/01-architecture-stage-1.png)
 
 # 🟨Stage 1- Lambda + API Gateway Integration
