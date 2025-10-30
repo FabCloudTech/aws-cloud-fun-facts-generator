@@ -61,7 +61,7 @@ When you call it, Lambda queries the DynamoDB table `CloudFacts`, randomly selec
 ## 🧩 Example Output  
 ```json
 {"fact": "EC2 was one of the first AWS services to change IT forever."}
-
+---
 # 🧩 What I learned
 - How to integrate Lambda + DynamoDB to make APIs dynamic and data-driven.  
 - How to attach IAM roles and policies securely to control Lambda permissions.  
