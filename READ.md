@@ -106,3 +106,13 @@ Hit the live endpoint and received a working response from DynamoDB — the fun 
 ### 🧾 Example Output
 ```json
 {"fact": "EC2 was one of the first AWS services to change IT forever."}
+
+✅ The endpoint now dynamically serves a random AWS fun fact every time it’s called.
+
+## 🧩What I learned (Stage 2)
+- Integrating Lambda + DynamoDB for dynamic data retrieval
+- Managing IAM roles & permissions securely
+- Testing end-to-end Lambda → API Gateway → DynamoDB flow
+- Designing clear, creative cloud architectures in Canva
+- Confirming that my API endpoint works and returns live data 🎯
+---
