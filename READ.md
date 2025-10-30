@@ -57,11 +57,10 @@ When you call it, Lambda queries the DynamoDB table `CloudFacts`, randomly selec
 - Lambda Test Success (Response Returned): ![Lambda](docs/screenshots/15-lambda-test-success.png)  
 - API Endpoint Created: ![API Gateway](docs/screenshots/16-api-endpoint-success.png)  
 - API Test Output (Fun Fact Works!): ![API Gateway](docs/screenshots/17-api-test-output.png)  
+ 
 
-## 🧩 Example Output  
 
-
-# 🧩 What I learned
+## 🧩 What I learned
 - How to integrate Lambda + DynamoDB to make APIs dynamic and data-driven.  
 - How to attach IAM roles and policies securely to control Lambda permissions.  
 - How to test a complete end-to-end flow: API Gateway → Lambda → DynamoDB → JSON response.  
