@@ -116,4 +116,85 @@ API Gateway keeps the same `/funfact` endpoint. When you call it, Lambda can fet
 - How serverless AI pipelines (DynamoDB + Lambda + Bedrock) can automate intelligent content generation  
 
 ---
+# 🟪 Stage 4 – Frontend with AWS Amplify
+
+This stage adds a lightweight web UI (single `index.html`) hosted on **AWS Amplify** that calls your existing API Gateway → Lambda → (DynamoDB / Bedrock) backend and renders a fun fact.
+
+## 💡 How it works
+- A static HTML page (no build tools) is deployed to **Amplify Hosting**.
+- The page calls your API with `fetch(API_URL)` and displays the JSON `{ "fact": "..." }`.
+- **CORS** is enabled on API Gateway so the browser is allowed to call the API from your Amplify domain.
+
+## 🚀 Run it (simple)
+
+1. **Create `index.html`** (the only file).  
+   - Include your **Invoke URL + `/funfact`** in the constant:
+     ```js
+     // Replace with your API invoke URL + /funfact
+     const API_URL = 'https://<your-id>.execute-api.<region>.amazonaws.com/funfact';
+     ```
+   - Use a simple `fetch(API_URL)` to display `data.fact`.
+
+2. **Enable CORS** in API Gateway:
+   - Add your Amplify domain as an **Allowed Origin** (e.g., `https://production.<hash>.amplifyapp.com`).
+   - Allow headers: `content-type`, `authorization`, `x-amz-date`, `x-api-key`, `x-amz-security-token`.
+   - Allow methods: `GET, POST, OPTIONS, PUT, DELETE` (at least `GET` and `OPTIONS`).
+   - Click **Deploy** after configuring CORS.
+
+3. **Deploy the frontend to Amplify (no Git)**:
+   - Amplify Console → **Create new app** → **Deploy without Git**.
+   - App name (e.g., `cloud-fun-facts-generator`), branch `production`.
+   - **Drag & drop** a zip that contains your **`index.html` at the top level** (zip the file itself, not a folder).
+
+4. **Open the Amplify URL** and click **Generate Fun Fact**.  
+   You should see a witty cloud fact returned from your backend.
+
+---
+
+## 🔧 Architecture
+*(Optional) If you created a Stage 4 diagram, add it here.*  
+For now, Stage 4 reuses your Stage 3 backend; the only addition is **Amplify Hosting** in front of API Gateway.
+
+---
+
+## 🧪 Proof of Stage 4 (console screenshots)
+
+- Frontend Code (`index.html`):  
+  ![index.html code](docs/screenshots/25-frontend-index-html-code.png)
+
+- API URL wired in code:  
+  ![API URL in code](docs/screenshots/26-frontend-api-url-in-code.png)
+
+- API Gateway → CORS (before configure):  
+  ![CORS page](docs/screenshots/27-api-cors-page.png)
+
+- API Gateway → CORS configured (origins/headers/methods):  
+  ![CORS configured](docs/screenshots/28-api-cors-configured.png)
+
+- Amplify → Create app (Deploy without Git):  
+  ![Amplify create](docs/screenshots/29-amplify-create-app-manual.png)
+
+- Amplify → Manual deployment form:  
+  ![Amplify manual deployment](docs/screenshots/30-amplify-manual-deployment.png)
+
+- Amplify → `index.zip` uploaded:  
+  ![index.zip uploaded](docs/screenshots/31-amplify-upload-index-zip.png)
+
+- Frontend page (loaded):  
+  ![Frontend page](docs/screenshots/32-frontend-page-loaded.png)
+
+- Frontend success (fact rendered):  
+  ![Success output](docs/screenshots/33-frontend-fact-success.png)
+
+---
+
+## ✅ What I learned
+- How to host a **single-file frontend** on **AWS Amplify** without any build system.
+- How to correctly set **CORS** for browser → API Gateway calls (Allowed Origins, Headers, Methods).
+- How to wire a **public Invoke URL** into client-side JavaScript safely (no secrets on the client).
+- Practical debugging steps for 4xx/5xx: check **CORS**, **stage deployment**, and **route path** (`/funfact`).
+- End-to-end validation: Amplify (UI) → API Gateway → Lambda → Bedrock/DynamoDB → JSON → UI.
+
+---
+
 
