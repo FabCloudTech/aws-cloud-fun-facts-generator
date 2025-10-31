@@ -69,6 +69,7 @@ When you call it, Lambda queries the DynamoDB table `CloudFacts`, randomly selec
 - Practiced redacting sensitive info and structuring clear documentation.  
 - Verified that the live API endpoint successfully returns random fun facts from DynamoDB 🎉
 
+---
 
 ## 🧠 Stage 3 — Amazon Bedrock Integration
 
@@ -82,81 +83,80 @@ This extended the existing Lambda + API Gateway workflow by adding Gen-AI capabi
 I navigated to **Amazon Bedrock → Model Catalog**, filtered by **Provider: Anthropic**, and selected **Claude 3.5 Sonnet** for this project.  
 Since it was my first time using Bedrock, I submitted a use-case request and was approved.
 
-📸 **Screenshots:**
-- `18-bedrock-model-catalog.png`
-- `19-bedrock-select-claude-sonnet.png`
-
 ---
 
 ### 🔐 Step 2 — Grant Lambda Bedrock Access
 
-I opened the **IAM Console → Roles**, searched for my Lambda execution role `CloudFunFacts-role`, and attached the **AmazonBedrockFullAccess** managed policy.  
-This allowed my Lambda function to call Bedrock’s runtime APIs.
-
-📸 **Screenshot:**
-- `20-iam-bedrock-policy-attach.png`
+Opened the **IAM Console → Roles**, searched for my Lambda execution role `CloudFunFacts-role`,  
+and attached the **AmazonBedrockFullAccess** managed policy.  
+This allowed the Lambda function to call Bedrock’s runtime APIs.
 
 ---
 
 ### 💻 Step 3 — Update Lambda Function Code
 
-The Lambda function was updated to:
+The Lambda function was updated to:  
 - Fetch random facts from DynamoDB  
 - Pass the data to the Bedrock client (`boto3.client("bedrock-runtime")`)  
-- Return a witty, AI-generated fact via the API Gateway endpoint  
-
-📸 **Screenshots:**
-- `21-lambda-bedrock-function-code-1.png`
-- `21-lambda-bedrock-function-code-2.png`
+- Return a witty, AI-generated fact through API Gateway  
 
 ---
 
 ### ⚙️ Step 4 — Adjust Lambda Configuration
 
-Under **Configuration → Edit Basic Settings**, I increased the **timeout** value to **30 seconds** to ensure enough time for Bedrock model responses.
-
-📸 **Screenshot:**
-- `22-lambda-timeout-update.png`
+Under **Configuration → Edit Basic Settings**, I increased the **timeout** value to **30 seconds**  
+to ensure sufficient time for Bedrock responses.
 
 ---
 
 ### 🧪 Step 5 — Test the Gen-AI Lambda
 
 After deployment, I ran a test event named **TestEvent**.  
-The output confirmed a successful Bedrock-powered response — a witty cloud-related fact was returned.
-
-📸 **Screenshot:**
-- `23-lambda-test-success.png`
+The output confirmed a successful Bedrock-powered response with a witty cloud fact.
 
 ---
 
 ### 🌐 Step 6 — Validate via API Gateway Endpoint
 
-I reused the existing API Gateway endpoint created earlier in Stage 2.  
-Opening the endpoint URL in the browser displayed the live Bedrock-generated fact in JSON format.
+Reused the existing API Gateway endpoint created in Stage 2.  
+Opened the URL in the browser and confirmed a live Bedrock-generated fact displayed in JSON format.
 
-📸 **Screenshots:**
-- `16-api-endpoint-success.png`
-- `24-api-bedrock-response.png`
+---
+
+## 🧾 Proof of Stage 3 (console screenshots)
+
+- Bedrock Model Catalog (Anthropic Models): ![Bedrock](docs/screenshots/18-bedrock-model-catalog.png)
+- Selected Claude 3.5 Sonnet: ![Bedrock](docs/screenshots/19-bedrock-select-claude-sonnet.png)
+- IAM Role Attached (AmazonBedrockFullAccess): ![IAM](docs/screenshots/20-iam-bedrock-policy-attach.png)
+- Lambda Updated with Bedrock Code (Part 1): ![Lambda](docs/screenshots/21-lambda-bedrock-function-code-1.png)
+- Lambda Updated with Bedrock Code (Part 2): ![Lambda](docs/screenshots/21-lambda-bedrock-function-code-2.png)
+- Lambda Timeout Increased to 30s: ![Lambda](docs/screenshots/22-lambda-timeout-update.png)
+- Lambda Test Success (AI Response Returned): ![Lambda](docs/screenshots/23-lambda-test-success.png)
+- API Endpoint Verified: ![API Gateway](docs/screenshots/16-api-endpoint-success.png)
+- API Output (Witty Fact from Bedrock): ![API Gateway](docs/screenshots/24-api-bedrock-response.png)
 
 ---
 
 ### ✅ Outcome
 
 At this stage, the **CloudFunFacts** architecture successfully connects:
-1. **Amplify (Frontend Hosting)**  
+
+1. **Amplify** (Frontend Hosting)  
 2. **API Gateway**  
 3. **Lambda Function**  
 4. **DynamoDB**  
 5. **Amazon Bedrock (AI Model Invocation)**  
 
-The system now returns fun, dynamically generated cloud facts using real-time AI inference.
+The system now returns fun, dynamically generated cloud facts powered by real-time AI inference.
 
 ---
 
 ### 🧭 What I Learned
 
 - How to configure and invoke **Amazon Bedrock models** using Python (`boto3`)  
-- How to attach IAM policies for Bedrock access in a secure, least-privilege way  
-- How to manage Lambda runtime performance and timeout tuning  
-- The power of **serverless AI pipelines** — combining DynamoDB, Lambda, and Bedrock to automate intelligent content generation
+- How to attach IAM policies for Bedrock access safely and securely  
+- How to manage Lambda runtime performance and timeouts  
+- How serverless AI pipelines (DynamoDB + Lambda + Bedrock) can automate intelligent content generation  
+
+---
+
